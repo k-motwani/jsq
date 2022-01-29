@@ -3549,7 +3549,7 @@ TTestBayesianOneSample <- function(dataset=NULL, options, perform="run", callbac
     ggplot2::xlab(NULL) +
     .base_breaks_y2(summaryStat, testValueOpt) 
     
-    p <- JASPgraphs::themeJasp(p) + ggplot2::theme(axis.text.x = ggplot2::element_blank(), axis.ticks.x = ggplot2::element_blank())
+    p <- jaspGraphs::themeJasp(p) + ggplot2::theme(axis.text.x = ggplot2::element_blank(), axis.ticks.x = ggplot2::element_blank())
 
   return(p)
 }
