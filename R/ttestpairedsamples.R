@@ -622,7 +622,7 @@ TTestPairedSamples <- function(dataset = NULL, options, perform = "run",
 				size = 4) + ggplot2::ylab(NULL) + ggplot2::xlab(NULL) + base_breaks_y(summaryStat) +
 				base_breaks_x(summaryStat$groupingVariable) + ggplot2::scale_x_discrete(labels = c(pair[[1]], pair[[2]]))
 				
-			p <- JASPgraphs::themeJasp(p)
+			p <- jaspGraphs::themeJasp(p)
 
 			imgObj <- .writeImage(width = options$plotWidth, 
 														height = options$plotHeight, 
