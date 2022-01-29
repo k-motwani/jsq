@@ -535,13 +535,13 @@ Descriptives <- function(jaspResults, dataset, options, state=NULL)
 	# minor adjustments to plot margin to avoid cutting off the x-axis labels
 	adjMargin <- ggplot2::theme(plot.margin = ggplot2::unit(c(.25, .40, .25, .25), "cm"))
 
-  oldFontSize <- JASPgraphs::getGraphOption("fontsize")
-  JASPgraphs::setGraphOption("fontsize", .85 * oldFontSize)
+  oldFontSize <- jaspGraphs::getGraphOption("fontsize")
+  jaspGraphs::setGraphOption("fontsize", .85 * oldFontSize)
 
   # first do the diagonal and store breaks
   for (row in seq_along(variables)) {
   	plotMat[[row, row]] <- .plotMarginalCorDescriptives(dataset[[variables[[row]]]]) + adjMargin
-  	axisBreaks[[row]] <- JASPgraphs::getAxisBreaks(plotMat[[row, row]])
+  	axisBreaks[[row]] <- jaspGraphs::getAxisBreaks(plotMat[[row, row]])
   }
 
   # now do off-diagonal and use the same breaks
@@ -556,13 +556,13 @@ Descriptives <- function(jaspResults, dataset, options, state=NULL)
   	}
   }
 
-  JASPgraphs::setGraphOption("fontsize", oldFontSize)
+  jaspGraphs::setGraphOption("fontsize", oldFontSize)
 
 	# slightly adjust the positions of the labels left and above the plots.
   labelPos <- matrix(.5, 4, 2)
   labelPos[1, 1] <- .55
   labelPos[4, 2] <- .65
-  p <- JASPgraphs::ggMatrixPlot(plotList = plotMat, leftLabels = .unv(variables), topLabels = .unv(variables),
+  p <- jaspGraphs::ggMatrixPlot(plotList = plotMat, leftLabels = .unv(variables), topLabels = .unv(variables),
   															scaleXYlabels = NULL, labelPos = labelPos)
 
   return(createJaspPlot(plot=p, width=250 * l + 20, aspectRatio=1, title=name, dependencies=depends))
@@ -580,7 +580,7 @@ Descriptives <- function(jaspResults, dataset, options, state=NULL)
 		p <- ggplot2::ggplot(data = data.frame(x = variable))
 		h <- hist(variable, plot = FALSE)
   	hdiff <- h$breaks[2L] - h$breaks[1L]
-		xBreaks <- JASPgraphs::getPrettyAxisBreaks(c(variable, h$breaks), min.n = 3)
+		xBreaks <- jaspGraphs::getPrettyAxisBreaks(c(variable, h$breaks), min.n = 3)
 		dens <- h$density
   	yBreaks <- c(0, 1.2*max(h$density))
 
@@ -626,7 +626,7 @@ Descriptives <- function(jaspResults, dataset, options, state=NULL)
   p <- p +
   	ggplot2::scale_y_continuous(name = yName, breaks = yBreaks, labels = c("", ""), limits = yLim) +
   	ggplot2::theme()
-  return(JASPgraphs::themeJasp(p) + thm)
+  return(jaspGraphs::themeJasp(p) + thm)
 
 }
 
@@ -675,7 +675,7 @@ Descriptives <- function(jaspResults, dataset, options, state=NULL)
   	d$y <- as.factor(d$y)
 
   if (is.null(xBreaks))
-    xBreaks <- JASPgraphs::getPrettyAxisBreaks(d$x)
+    xBreaks <- jaspGraphs::getPrettyAxisBreaks(d$x)
 
   fit <- NULL
   if (bothNumeric) {
@@ -686,16 +686,16 @@ Descriptives <- function(jaspResults, dataset, options, state=NULL)
   	yLimits <- range(c(pretty(yVar)), rangeLineObj)
 
   	if (is.null(yBreaks) || yLimits[1L] <= yBreaks[1L] || yLimits[2L] >= yBreaks[length(yBreaks)])
-  		yBreaks <- JASPgraphs::getPrettyAxisBreaks(yLimits)
+  		yBreaks <- jaspGraphs::getPrettyAxisBreaks(yLimits)
 
   } else if (is.null(yBreaks)) {
 
-  	yBreaks <- JASPgraphs::getPrettyAxisBreaks(d$y)
+  	yBreaks <- jaspGraphs::getPrettyAxisBreaks(d$y)
 
   }
 
   p <- ggplot2::ggplot(data = d, ggplot2::aes(x = x, y = y)) +
-    JASPgraphs::geom_point()
+    jaspGraphs::geom_point()
 
   if (bothNumeric) {
   	xr <- range(xBreaks)
@@ -714,7 +714,7 @@ Descriptives <- function(jaspResults, dataset, options, state=NULL)
   	p <- p + ggplot2::scale_y_discrete(name = yName)
   }
 
-  return(JASPgraphs::themeJasp(p))
+  return(jaspGraphs::themeJasp(p))
 }
 
 
@@ -726,8 +726,8 @@ Descriptives <- function(jaspResults, dataset, options, state=NULL)
     label = stringr::str_wrap(errorMessage, width = 40)
   )
   p <- ggplot2::ggplot(data = df, ggplot2::aes(x = x, y = y, label = label)) +
-    ggplot2::geom_text(size = .4*JASPgraphs::getGraphOption("fontsize")) +
-    JASPgraphs::getEmptyTheme()
+    ggplot2::geom_text(size = .4*jaspGraphs::getGraphOption("fontsize")) +
+    jaspGraphs::getEmptyTheme()
 
   return(p)
 }
@@ -974,13 +974,13 @@ Descriptives <- function(jaspResults, dataset, options, state=NULL)
 
   if (!displayDensity)
     p <-
-      JASPgraphs::drawAxis(
+      jaspGraphs::drawAxis(
         xName = variableName, yName = "Counts", xBreaks = xticks,
         yBreaks = base::pretty(c(0, h$counts)), force = TRUE, xLabels = xticks
       )
   else
     p <-
-      JASPgraphs::drawAxis(
+      jaspGraphs::drawAxis(
         xName = variableName, yName = "Density", xBreaks = xticks,
         yBreaks = c(0,  1.05 * yhigh), force = TRUE, yLabels = NULL,
         xLabels = xticks
@@ -1016,7 +1016,7 @@ Descriptives <- function(jaspResults, dataset, options, state=NULL)
       )
 
   # JASP theme
-  p <- JASPgraphs::themeJasp(p,
+  p <- jaspGraphs::themeJasp(p,
                              axisTickWidth = .7,
                              bty = list(type = "n", ldwX = .7, lwdY = 1))
   # TODO: Fix jaspgraphs axis width X vs Y. See @vandenman.
@@ -1027,9 +1027,9 @@ Descriptives <- function(jaspResults, dataset, options, state=NULL)
   return(p)
 }
 .barplotJASP <- function(column, variable, dontPlotData= FALSE){
-  p <- JASPgraphs::drawAxis(xName = variable, xBreaks = 1:5, yBreaks = 1:5)
+  p <- jaspGraphs::drawAxis(xName = variable, xBreaks = 1:5, yBreaks = 1:5)
 
-  if (dontPlotData) return(JASPgraphs::themeJasp(p))
+  if (dontPlotData) return(jaspGraphs::themeJasp(p))
 
   tb <- as.data.frame(table(column))
   p  <- ggplot2::ggplot(data = data.frame(x = tb[, 1], y = tb[, 2]), ggplot2::aes(x = x, y = y)) +
@@ -1038,7 +1038,7 @@ Descriptives <- function(jaspResults, dataset, options, state=NULL)
     ggplot2::ylab("Counts")
 
   # JASP theme
-  p <- JASPgraphs::themeJasp(p)
+  p <- jaspGraphs::themeJasp(p)
 
     return(p)
 
