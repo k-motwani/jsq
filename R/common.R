@@ -2253,7 +2253,7 @@ as.list.footnotes <- function(footnotes) {
     #type <- "quartz"
   # }
   backgroundColor <- .fromRCPP(".imageBackground")
-  if (ggplot2::is.ggplot(plot) || inherits(plot, c("gtable", "ggMatrixplot", "JASPgraphs"))) {
+  if (ggplot2::is.ggplot(plot) || inherits(plot, c("gtable", "ggMatrixplot", "jaspGraphs"))) {
     ppi <- .fromRCPP(".ppi")
 
     pngMultip <- .fromRCPP(".ppi") / 96
