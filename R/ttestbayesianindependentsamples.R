@@ -1265,7 +1265,7 @@ TTestBayesianIndependentSamples <- function(dataset=NULL, options, perform="run"
 			.base_breaks_y3(summaryStat) +
 			.base_breaks_x(summaryStat$groupingVariable) 
 			
-	p <- JASPgraphs::themeJasp(p)
+	p <- jaspGraphs::themeJasp(p)
 
 	return(p)
 }
