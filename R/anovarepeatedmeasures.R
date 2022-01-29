@@ -2596,7 +2596,7 @@ AnovaRepeatedMeasures <- function(dataset=NULL, options, perform="run", callback
 				base_breaks_y(summaryStat, options$plotErrorBars) +
 				base_breaks_x(summaryStatSubset[,"plotHorizontalAxis"])
 				
-			p <- JASPgraphs::themeJasp(p, legend.position="right")
+			p <- jaspGraphs::themeJasp(p, legend.position="right")
 
 			if (nPlots > 1) {
 				descriptivesPlot[["title"]] <- paste(options$plotSeparatePlots,": ",subsetPlots[i], sep = "")
