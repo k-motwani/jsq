@@ -1274,7 +1274,7 @@ RegressionLinearBayesian <- function (
 	  ggplot2::geom_text(data = dfCriText, mapping = ggplot2::aes(x = x, y = y, label = label), size = 6, 
 	                     hjust = c("right", "left"), inherit.aes = FALSE)
 	
-	g <- JASPgraphs::themeJasp(g)
+	g <- JASPgraphs::themeJaspRaw(g)
 
 	return(g)
 }
@@ -1337,7 +1337,7 @@ RegressionLinearBayesian <- function (
 		g <- JASPgraphs::drawSmooth(g, dat = dfPoints, color = "red", alpha = .7) +
 			ggplot2::ylab("Residuals") +
 			ggplot2::scale_x_continuous(name = "Predictions under BMA", breaks = xBreaks, limits = range(xBreaks))
-		g <- JASPgraphs::themeJasp(g)
+		g <- JASPgraphs::themeJaspRaw(g)
 
 		return(g)
 
@@ -1356,7 +1356,7 @@ RegressionLinearBayesian <- function (
 		g <- JASPgraphs::drawPoints(g, dat = dfPoints, size = 4) +
 		    ggplot2::scale_y_continuous(name = "Cumulative Probability", limits = 0:1) +
 			ggplot2::scale_x_continuous(name = "Model Search Order", breaks = xBreaks)
-		g <- JASPgraphs::themeJasp(g)
+		g <- JASPgraphs::themeJaspRaw(g)
 		return(g)
 	}
 	if (show[3]) {
@@ -1374,7 +1374,7 @@ RegressionLinearBayesian <- function (
 		g <- JASPgraphs::drawPoints(dat = dfPoints, size = 4) +
 			ggplot2::scale_y_continuous(name = "Log(P(data|M))", breaks = yBreaks, limits = range(yBreaks)) +
 			ggplot2::scale_x_continuous(name = "Model Dimension", breaks = xBreaks)
-		g <- JASPgraphs::themeJasp(g)
+		g <- JASPgraphs::themeJaspRaw(g)
 		return(g)
 
 	}
@@ -1411,7 +1411,7 @@ RegressionLinearBayesian <- function (
 			ggplot2::xlab("") +
 			ggplot2::scale_linetype_manual(name = "", values = 2, labels = "Prior\nInclusion\nProbabilities")
 		
-		g <- JASPgraphs::themeJasp(g, horizontal = TRUE, legend.position = "right") +
+		g <- JASPgraphs::themeJaspRaw(g, horizontal = TRUE, legend.position = "right") +
 			ggplot2::theme(
 				legend.title = ggplot2::element_text(size = .8*JASPgraphs::graphOptions("fontsize"))
 			)
@@ -1500,7 +1500,7 @@ RegressionLinearBayesian <- function (
 				  xTrans = scales::reverse_trans())
 	g <- JASPgraphs::drawLines(g, dat = dfLines, mapping = ggplot2::aes(x = x, y = y, group = g),
 				   color = "gray50", alpha = .7, size = 2)
-	g <- JASPgraphs::themeJasp(graph = g, legend.position = "right", axisTickLength = 0,
+	g <- JASPgraphs::themeJaspRaw(graph = g, legend.position = "right", axisTickLength = 0,
 							   bty = "o")
 
 	# this plot needs some additional treatment
@@ -1547,7 +1547,7 @@ RegressionLinearBayesian <- function (
             ggplot2::geom_errorbar(, width = 0.2) + 
             ggplot2::scale_x_discrete(name = "") + 
             ggplot2::scale_y_continuous(name = expression(beta), breaks = yBreaks, limits = range(yBreaks))
-        plotObj <- JASPgraphs::themeJasp(g) + 
+        plotObj <- JASPgraphs::themeJaspRaw(g) + 
             ggplot2::theme(
                 axis.title.y = ggplot2::element_text(angle = 0, vjust = .5, size = 20)
             )
