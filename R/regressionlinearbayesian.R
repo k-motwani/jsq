@@ -1333,8 +1333,8 @@ RegressionLinearBayesian <- function (
 		xBreaks <- JASPgraphs::getPrettyAxisBreaks(dfPoints[["x"]], 3)
 		g <- JASPgraphs::drawAxis()
 		g <- g + ggplot2::geom_hline(yintercept = 0, linetype = 2, col = "gray")
-		g <- JASPgraphs::drawPoints(g, dat = dfPoints, size = 2, alpha = .85)
-		g <- JASPgraphs::drawSmooth(g, dat = dfPoints, color = "red", alpha = .7) +
+		g <- ggplot2::geom_point(g, dat = dfPoints, size = 2, alpha = .85)
+		g <- ggplot2::geom_smooth(g, dat = dfPoints, color = "red", alpha = .7) +
 			ggplot2::ylab("Residuals") +
 			ggplot2::scale_x_continuous(name = "Predictions under BMA", breaks = xBreaks, limits = range(xBreaks))
 		g <- JASPgraphs::themeJaspRaw(g)
@@ -1404,8 +1404,8 @@ RegressionLinearBayesian <- function (
 		yLimits <- c(0, base * ceiling(max(c(priorProb, probne0)) / base))
 		yBreaks <- seq(yLimits[1], yLimits[2], length.out = 5)
 
-		g <- JASPgraphs::drawBars(dat = dfBar, width = width)
-		g <- JASPgraphs::drawLines(g, dat = dfLine,
+		g <- ggplot2::geom_bar(dat = dfBar, width = width)
+		g <- ggplot2::geom_line(g, dat = dfLine,
 								   mapping = ggplot2::aes(x = x, y = y, group = g, linetype = g0), show.legend = TRUE) +
 			ggplot2::scale_y_continuous("Marginal Inclusion Probability", breaks = yBreaks, limits = yLimits) +
 			ggplot2::xlab("") +
@@ -1498,7 +1498,7 @@ RegressionLinearBayesian <- function (
 				  yName = "", yBreaks = 1:nvar, yLabels = namesx, xLimits = NULL, yLimits = NULL,
 				  secondaryXaxis = list(~.,name = "Model Rank", breaks = xBreaks, labels = top.models:1),
 				  xTrans = scales::reverse_trans())
-	g <- JASPgraphs::drawLines(g, dat = dfLines, mapping = ggplot2::aes(x = x, y = y, group = g),
+	g <- ggplot2::geom_line(g, dat = dfLines, mapping = ggplot2::aes(x = x, y = y, group = g),
 				   color = "gray50", alpha = .7, size = 2)
 	g <- JASPgraphs::themeJaspRaw(graph = g, legend.position = "right", axisTickLength = 0,
 							   bty = "o")
