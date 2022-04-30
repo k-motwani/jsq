@@ -2492,7 +2492,7 @@ Ancova <- function(dataset=NULL, options, perform="run", callback=function(...) 
 				base_breaks_y(summaryStat, options$plotErrorBars) +
 				base_breaks_x(summaryStatSubset[,"plotHorizontalAxis"])
 				
-			p <- jaspGraphs::themeJasp(p, legend.position = "right")
+			p <- jaspGraphs::themeJaspRaw(p, legend.position = "right")
 
 			if (nPlots > 1) {
 				descriptivesPlot[["title"]] <- paste(options$plotSeparatePlots,": ",subsetPlots[i], sep = "")
@@ -2638,8 +2638,8 @@ Ancova <- function(dataset=NULL, options, perform="run", callback=function(...) 
 		p <- jaspGraphs::drawPoints(p, dat = data.frame(xVar, yVar), size = 3)
 		
 		# JASP theme
-	    p <- jaspGraphs::themeJasp(p)
-		
+	    p <- jaspGraphs::themeJaspRaw(p)
+
 		content <- .writeImage(width = options$plotWidthQQPlot,
 									   height = options$plotHeightQQPlot,
 									   plot = p, obj = TRUE)
