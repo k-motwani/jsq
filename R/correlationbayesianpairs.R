@@ -997,10 +997,10 @@ CorrelationBayesianPairs <- function(dataset=NULL, options, perform="run", callb
 .plotScatter.Bcorrelationpairs <- function(xVar=NULL, yVar=NULL, xlab, ylab, dontPlotData=FALSE, cexPoints= 1.3, cexXAxis= 1.3, cexYAxis= 1.3, lwd= 2, lwdAxis=1.2) {
         
     if (dontPlotData) {
+        y
+        p <- jaspGraphs::drawAxis(xName = xlab, yName = ylab, force = TRUE)
         
-        p <- JASPgraphs::drawAxis(xName = xlab, yName = ylab, force = TRUE)
-        
-        p <- JASPgraphs::themeJasp(p)
+        p <- jaspGraphs::themeJaspRaw(p)
 
         return(p)
     }
@@ -1043,12 +1043,12 @@ CorrelationBayesianPairs <- function(dataset=NULL, options, perform="run", callb
         }
     }
 
-    p <- JASPgraphs::drawAxis(xName = xlab, yName = ylab, xBreaks = xticks, yBreaks = yticks, yLabels = yLabs, xLabels = xLabs, force = TRUE)
-    p <- JASPgraphs::drawPoints(p, dat = d, size = 3)
+    p <- jaspGraphs::drawAxis(xName = xlab, yName = ylab, xBreaks = xticks, yBreaks = yticks, yLabels = yLabs, xLabels = xLabs, force = TRUE)
+    p <- jaspGraphs::drawPoints(p, dat = d, size = 3)
     p <- .poly.pred(fit[[bestModel]], plot = p, line= TRUE, xMin= xticks[1], xMax= xticks[length(xticks)], lwd = 1)    
 
     # JASP theme
-    p <- JASPgraphs::themeJasp(p)
+    p <- jaspGraphs::themeJaspRaw(p)
     
     return(p)
     

@@ -196,7 +196,7 @@ BinomialTest <- function(dataset, options, perform, state, ...) {
 					ggplot2::ylim(min = 0, max = 1) +
 					base_breaks_y(summaryStat, dfTestValue$testValue) 
 					
-				descriptivesPlot <- jaspGraphs::themeJasp(descriptivesPlot) + ggplot2::theme(axis.text.x = ggplot2::element_blank(), axis.ticks.x = ggplot2::element_blank())
+				descriptivesPlot <- jaspGraphs::themeJaspRaw(descriptivesPlot) + ggplot2::theme(axis.text.x = ggplot2::element_blank(), axis.ticks.x = ggplot2::element_blank())
 
 				}
 

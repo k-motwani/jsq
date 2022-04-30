@@ -3837,7 +3837,7 @@ RegressionLinear <- function(dataset=NULL, options, perform="run", callback=func
      	dfYr <- data.frame(x = Inf, xend = Inf, y = -2, yend = 2)
 		
 			if(standardizedResiduals){	
-				p <- JASPgraphs::drawAxis(xName = xlab, yName = ylab, force = TRUE, yBreaks = -2:2, xBreaks = 1:5, yLabels = -2:2, xLabels = 1:5,
+				p <- jaspGraphs::drawAxis(xName = xlab, yName = ylab, force = TRUE, yBreaks = -2:2, xBreaks = 1:5, yLabels = -2:2, xLabels = 1:5,
 				secondaryYaxis = ggplot2::sec_axis(~.+0,breaks = -2:2, name = "Standardize Residuals"))
 				
 				p <- p + ggplot2::geom_segment(data = dfYr,
@@ -3846,10 +3846,10 @@ RegressionLinear <- function(dataset=NULL, options, perform="run", callback=func
 										stat = ggplot2::StatIdentity, inherit.aes = FALSE, colour = "black")
 										
 			} else {
-				p <- JASPgraphs::drawAxis(xName = xlab, yName = ylab, force = TRUE, yBreaks = -2:2, xBreaks = 1:5, yLabels = -2:2, xLabels = 1:5)
+				p <- jaspGraphs::drawAxis(xName = xlab, yName = ylab, force = TRUE, yBreaks = -2:2, xBreaks = 1:5, yLabels = -2:2, xLabels = 1:5)
 			}
 			
-			p <- JASPgraphs::themeJasp(p)
+			p <- jaspGraphs::themeJaspRaw(p)
 
 	    return(p)
     }
@@ -3895,7 +3895,7 @@ RegressionLinear <- function(dataset=NULL, options, perform="run", callback=func
 		dfYr <- data.frame(x = Inf, xend = Inf, y = stAxisOriginalScale[1],
 											 yend = stAxisOriginalScale[length(stAxisOriginalScale)])
 						 
-		p <- JASPgraphs::drawAxis(xName = xlab, yName = ylab, xBreaks = xticks, yBreaks = yticks, yLabels = yLabs, xLabels = xLabs, force = TRUE,
+		p <- jaspGraphs::drawAxis(xName = xlab, yName = ylab, xBreaks = xticks, yBreaks = yticks, yLabels = yLabs, xLabels = xLabs, force = TRUE,
 			secondaryYaxis = ggplot2::sec_axis(~.+0, breaks = stAxisOriginalScale, name = "Standardized Residuals\n",labels = stAxis))
 		
 		p <- p + ggplot2::geom_segment(data = dfYr,
@@ -3906,7 +3906,7 @@ RegressionLinear <- function(dataset=NULL, options, perform="run", callback=func
 	} else {
 		
 		dfYr <- data.frame(x = Inf, xend = Inf, y = yticks[1], yend = yticks[length(yticks)])					 
-		p <- JASPgraphs::drawAxis(xName = xlab, yName = ylab, xBreaks = xticks, yBreaks = yticks, yLabels = yLabs, xLabels = xLabs, force = TRUE)
+		p <- jaspGraphs::drawAxis(xName = xlab, yName = ylab, xBreaks = xticks, yBreaks = yticks, yLabels = yLabs, xLabels = xLabs, force = TRUE)
 	
 	}
 	
@@ -3914,10 +3914,10 @@ RegressionLinear <- function(dataset=NULL, options, perform="run", callback=func
 	  p <- p + ggplot2::geom_line(data = data.frame(x = c(min(xticks), max(xticks)), y = c(0, 0)), mapping = ggplot2::aes(x = x, y = y), col = "darkred", size = .5)
 	}
 	
-	p <- JASPgraphs::drawPoints(p, dat = data.frame(x = xVar, y = res), size = 3)
+	p <- jaspGraphs::drawPoints(p, dat = data.frame(x = xVar, y = res), size = 3)
 	
 	# JASP theme
-  p <- JASPgraphs::themeJasp(p)
+  p <- jaspGraphs::themeJaspRaw(p)
 	
   return(p)
 
@@ -3928,7 +3928,7 @@ RegressionLinear <- function(dataset=NULL, options, perform="run", callback=func
     if (dontPlotData) {
         
         p <- ggplot2::ggplot(data = data.frame(), mapping = ggplot2::aes())
-        p <- JASPgraphs::themeJasp(p,xName = xlab, yName = ylab)
+        p <- jaspGraphs::themeJaspRaw(p,xName = xlab, yName = ylab)
         
         return(p)
     }
@@ -3941,7 +3941,7 @@ RegressionLinear <- function(dataset=NULL, options, perform="run", callback=func
     ylow <- 0
     xticks <- base::pretty(c(res, h$breaks), min.n= 3)
 
-	p <- JASPgraphs::drawAxis(xName = resName, yName = "Density", xBreaks = xticks, yBreaks = c(0,max(density$y)+.1), force = TRUE, yLabels = NULL, xLabels = xticks)
+	p <- jaspGraphs::drawAxis(xName = resName, yName = "Density", xBreaks = xticks, yBreaks = c(0,max(density$y)+.1), force = TRUE, yLabels = NULL, xLabels = xticks)
     p <- p + ggplot2::geom_histogram(data = data.frame(res), mapping = ggplot2::aes(x = res, y = ..density..),
                                 binwidth = (h$breaks[2] - h$breaks[1]),
                                 fill = "grey",
@@ -3951,7 +3951,7 @@ RegressionLinear <- function(dataset=NULL, options, perform="run", callback=func
 	p <- p + ggplot2::geom_line(data = data.frame(x = density$x, y = density$y), mapping = ggplot2::aes(x = x, y = y), lwd = .7, col = "black")
 	p <- p + ggplot2::theme(axis.ticks.y = ggplot2::element_blank())
 	
-    p <- JASPgraphs::themeJasp(p)
+    p <- jaspGraphs::themeJaspRaw(p)
 
     return(p)
 
@@ -3962,9 +3962,9 @@ RegressionLinear <- function(dataset=NULL, options, perform="run", callback=func
 	
     if (dontPlotData) {
 		
-		p <- JASPgraphs::drawAxis(xName = xlab, yName = ylab)
+		p <- jaspGraphs::drawAxis(xName = xlab, yName = ylab)
 		
-        p <- JASPgraphs::themeJasp(p)
+        p <- jaspGraphs::themeJaspRaw(p)
         
         return(p)
         
@@ -3997,12 +3997,12 @@ RegressionLinear <- function(dataset=NULL, options, perform="run", callback=func
         }
     }
 
-	p <- JASPgraphs::drawAxis(xName = "Theoretical Quantiles", yName = "Standardized Residuals", xBreaks = xticks, yBreaks = xticks, force = TRUE)
+	p <- jaspGraphs::drawAxis(xName = "Theoretical Quantiles", yName = "Standardized Residuals", xBreaks = xticks, yBreaks = xticks, force = TRUE)
 	p <- p + ggplot2::geom_line(data = data.frame(x = c(min(xticks), max(xticks)), y = c(min(xticks), max(xticks))), mapping = ggplot2::aes(x = x, y = y), col = "darkred", size = 1)
-	p <- JASPgraphs::drawPoints(p, dat = data.frame(xVar, yVar), size = 3)
+	p <- jaspGraphs::drawPoints(p, dat = data.frame(xVar, yVar), size = 3)
 	
 	# JASP theme
-    p <- JASPgraphs::themeJasp(p)
+    p <- jaspGraphs::themeJaspRaw(p)
 
     return(p)
 

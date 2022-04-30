@@ -626,7 +626,7 @@ Descriptives <- function(jaspResults, dataset, options, state=NULL)
   p <- p +
   	ggplot2::scale_y_continuous(name = yName, breaks = yBreaks, labels = c("", ""), limits = yLim) +
   	ggplot2::theme()
-  return(jaspGraphs::themeJasp(p) + thm)
+  return(jaspGraphs::themeJaspRaw(p) + thm)
 
 }
 
@@ -714,7 +714,7 @@ Descriptives <- function(jaspResults, dataset, options, state=NULL)
   	p <- p + ggplot2::scale_y_discrete(name = yName)
   }
 
-  return(jaspGraphs::themeJasp(p))
+  return(jaspGraphs::themeJaspRaw(p))
 }
 
 
@@ -1016,7 +1016,7 @@ Descriptives <- function(jaspResults, dataset, options, state=NULL)
       )
 
   # JASP theme
-  p <- jaspGraphs::themeJasp(p,
+  p <- jaspGraphs::themeJaspRaw(p,
                              axisTickWidth = .7,
                              bty = list(type = "n", ldwX = .7, lwdY = 1))
   # TODO: Fix jaspgraphs axis width X vs Y. See @vandenman.
@@ -1029,7 +1029,7 @@ Descriptives <- function(jaspResults, dataset, options, state=NULL)
 .barplotJASP <- function(column, variable, dontPlotData= FALSE){
   p <- jaspGraphs::drawAxis(xName = variable, xBreaks = 1:5, yBreaks = 1:5)
 
-  if (dontPlotData) return(jaspGraphs::themeJasp(p))
+  if (dontPlotData) return(jaspGraphs::themeJaspRaw(p))
 
   tb <- as.data.frame(table(column))
   p  <- ggplot2::ggplot(data = data.frame(x = tb[, 1], y = tb[, 2]), ggplot2::aes(x = x, y = y)) +
@@ -1038,7 +1038,7 @@ Descriptives <- function(jaspResults, dataset, options, state=NULL)
     ggplot2::ylab("Counts")
 
   # JASP theme
-  p <- jaspGraphs::themeJasp(p)
+  p <- jaspGraphs::themeJaspRaw(p)
 
     return(p)
 
