@@ -534,8 +534,8 @@ Correlation <- function(dataset=NULL, options, perform="run", callback=function(
         # minor adjustments to plot margin to avoid cutting off the x-axis labels
 	       adjMargin <- ggplot2::theme(plot.margin = ggplot2::unit(c(.25, .40, .25, .25), "cm"))
 
-         oldFontSize <- JASPgraphs::getGraphOption("fontsize")
-         JASPgraphs::setGraphOption("fontsize", .85 * oldFontSize)
+         oldFontSize <- jaspGraphs::getGraphOption("fontsize")
+         jaspGraphs::setGraphOption("fontsize", .85 * oldFontSize)
 
             for (row in seq_len(l)) {
                 for (col in seq_len(l)) {
@@ -548,10 +548,10 @@ Correlation <- function(dataset=NULL, options, perform="run", callback=function(
                             }
                         } else {
 
-                            p <- JASPgraphs::drawAxis(xName = "", yName = "", force = TRUE) + adjMargin
+                            p <- jaspGraphs::drawAxis(xName = "", yName = "", force = TRUE) + adjMargin
                             p <- p + ggplot2::xlab("")
                             p <- p + ggplot2::ylab("")
-                            p <- JASPgraphs::themeJasp(p)
+                            p <- jaspGraphs::themeJaspRaw(p)
 
                             plotMat[[row, col]] <- p
                         }
@@ -568,10 +568,10 @@ Correlation <- function(dataset=NULL, options, perform="run", callback=function(
                             }
                         } else {
 
-                            p <- JASPgraphs::drawAxis(xName = "", yName = "", force = TRUE) + adjMargin
+                            p <- jaspGraphs::drawAxis(xName = "", yName = "", force = TRUE) + adjMargin
                             p <- p + ggplot2::xlab("")
                             p <- p + ggplot2::ylab("")
-                            p <- JASPgraphs::themeJasp(p)
+                            p <- jaspGraphs::themeJaspRaw(p)
 
                             plotMat[[row, col]] <- p
                         }
@@ -590,10 +590,10 @@ Correlation <- function(dataset=NULL, options, perform="run", callback=function(
                                 }
                             } else {
 
-                                p <- JASPgraphs::drawAxis(xName = "", yName = "", force = TRUE) + adjMargin
+                                p <- jaspGraphs::drawAxis(xName = "", yName = "", force = TRUE) + adjMargin
                                 p <- p + ggplot2::xlab("")
                                 p <- p + ggplot2::ylab("")
-                                p <- JASPgraphs::themeJasp(p)
+                                p <- jaspGraphs::themeJaspRaw(p)
 
                                 plotMat[[row, col]] <- p
                             }
@@ -613,10 +613,10 @@ Correlation <- function(dataset=NULL, options, perform="run", callback=function(
                                     plotMat[[row, col]] <- .displayError(errorMessagePlot, cexText=cexText) + adjMargin
                                 }
                             } else {
-                                p <- JASPgraphs::drawAxis(xName = "", yName = "", force = TRUE) + adjMargin
+                                p <- jaspGraphs::drawAxis(xName = "", yName = "", force = TRUE) + adjMargin
                                 p <- p + ggplot2::xlab("")
                                 p <- p + ggplot2::ylab("")
-                                p <- JASPgraphs::themeJasp(p)
+                                p <- jaspGraphs::themeJaspRaw(p)
 
                                 plotMat[[row, col]] <- p
                             }
@@ -625,7 +625,7 @@ Correlation <- function(dataset=NULL, options, perform="run", callback=function(
                 }
             }
 
-        JASPgraphs::setGraphOption("fontsize", oldFontSize)
+        jaspGraphs::setGraphOption("fontsize", oldFontSize)
 
         # slightly adjust the positions of the labels left and above the plots.
         labelPos <- matrix(.5, 4, 2)
@@ -709,7 +709,7 @@ Correlation <- function(dataset=NULL, options, perform="run", callback=function(
   p <- p +
   	ggplot2::scale_y_continuous(name = yName, breaks = yBreaks, labels = c("", ""), limits = yLim) +
   	ggplot2::theme()
-  return(JASPgraphs::themeJasp(p) + thm)
+  return(jaspGraphs::themeJaspRaw(p) + thm)
 
 }
 
@@ -800,7 +800,7 @@ Correlation <- function(dataset=NULL, options, perform="run", callback=function(
   	p <- p + ggplot2::scale_y_discrete(name = yName)
   }
 
-  return(JASPgraphs::themeJasp(p))
+  return(jaspGraphs::themeJaspRaw(p))
 }
 
 #### display correlation value ####
