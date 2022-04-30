@@ -796,7 +796,7 @@ TTestIndependentSamples <- function(dataset = NULL, options, perform = "run",
 				size = 4) + ggplot2::ylab(unlist(options$variables[variableIndex])) + ggplot2::xlab(options$groupingVariable) +
 				base_breaks_y(summaryStat) + base_breaks_x(summaryStat$groupingVariable)
 				
-			p <- JASPgraphs::themeJasp(p)
+			p <- jaspGraphs::themeJaspRaw(p)
 
 			imgObj <- .writeImage(width = options$plotWidth, 
 														height = options$plotHeight, 

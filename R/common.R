@@ -2253,7 +2253,7 @@ as.list.footnotes <- function(footnotes) {
     #type <- "quartz"
   # }
   backgroundColor <- .fromRCPP(".imageBackground")
-  if (ggplot2::is.ggplot(plot) || inherits(plot, c("gtable", "ggMatrixplot", "JASPgraphs"))) {
+  if (ggplot2::is.ggplot(plot) || inherits(plot, c("gtable", "ggMatrixplot", "jaspGraphs"))) {
     ppi <- .fromRCPP(".ppi")
 
     pngMultip <- .fromRCPP(".ppi") / 96
@@ -2347,7 +2347,7 @@ saveImage <- function(plotName, format, height, width)
 	# Plot and close graphics device
 	if (inherits(plt, "recordedplot")) {
 		.redrawPlot(plt) #(see below)
-	} else if (inherits(plt, c("gtable", "ggMatrixplot", "JASPgraphs"))) {
+	} else if (inherits(plt, c("gtable", "ggMatrixplot", "jaspGraphs"))) {
 		gridExtra::grid.arrange(plt)
 	} else {
 		plot(plt) #ggplots

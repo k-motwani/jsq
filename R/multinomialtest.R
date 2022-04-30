@@ -520,7 +520,7 @@ MultinomialTest <- function (dataset = NULL, options, perform = "run",
       ggplot2::xlab(options$factor) +
       ggplot2::ylab(yname)
       
-    p <- JASPgraphs::themeJasp(p, horizontal = TRUE, xAxis = FALSE)
+    p <- jaspGraphs::themeJaspRaw(p, horizontal = TRUE, xAxis = FALSE)
     
     
 

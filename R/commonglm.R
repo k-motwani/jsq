@@ -1126,7 +1126,7 @@
   }
 
   # then perform the theme and return the ggplot object
-  p <- JASPgraphs::themeJasp(p, legend.position = "none")
+  p <- jaspGraphs::themeJaspRaw(p, legend.position = "none")
   
   p + ggplot2::xlab(var) +
     ggplot2::ylab(ytitle) +
@@ -1295,7 +1295,7 @@
     custom_y_axis(ggdat[["resid"]]) +
     custom_x_axis(ggdat[["x"]]) 
 
-    p <- JASPgraphs::themeJasp(p, legend.position = "none")
+    p <- jaspGraphs::themeJaspRaw(p, legend.position = "none")
 
   p
 }
@@ -1336,7 +1336,7 @@
     custom_x_axis() +
     ggplot2::labs(x = "Predicted Probability", y = "Squared Pearson Residual") 
 
-    p <- JASPgraphs::themeJasp(p, legend.position = "none")
+    p <- jaspGraphs::themeJaspRaw(p, legend.position = "none")
 
   return(p)
 }

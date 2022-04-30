@@ -661,7 +661,7 @@ TTestOneSample <- function(dataset = NULL, options, perform = "run",
 				linetype = "dashed") + ggplot2::ylab(NULL) + ggplot2::xlab(NULL) +
 				base_breaks_y(summaryStat, options) 
 			
-			p <- JASPgraphs::themeJasp(p) + ggplot2::theme(axis.text.x = ggplot2::element_blank(), axis.ticks.x = ggplot2::element_blank())
+			p <- jaspGraphs::themeJaspRaw(p) + ggplot2::theme(axis.text.x = ggplot2::element_blank(), axis.ticks.x = ggplot2::element_blank())
 
 			imgObj <- .writeImage(width = options$plotWidth, 
 														height = options$plotHeight, 

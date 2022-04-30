@@ -2492,7 +2492,7 @@ Ancova <- function(dataset=NULL, options, perform="run", callback=function(...) 
 				base_breaks_y(summaryStat, options$plotErrorBars) +
 				base_breaks_x(summaryStatSubset[,"plotHorizontalAxis"])
 				
-			p <- JASPgraphs::themeJaspRaw(p, legend.position = "right")
+			p <- jaspGraphs::themeJaspRaw(p, legend.position = "right")
 
 			if (nPlots > 1) {
 				descriptivesPlot[["title"]] <- paste(options$plotSeparatePlots,": ",subsetPlots[i], sep = "")
@@ -2633,13 +2633,13 @@ Ancova <- function(dataset=NULL, options, perform="run", callback=function(...) 
 		    }
 		}
 		
-		p <- JASPgraphs::drawAxis(xName = "Theoretical Quantiles", yName = "Standardized Residuals", xBreaks = xticks, yBreaks = xticks, yLabels = xLabs, xLabels = xLabs, force = TRUE)
+		p <- jaspGraphs::drawAxis(xName = "Theoretical Quantiles", yName = "Standardized Residuals", xBreaks = xticks, yBreaks = xticks, yLabels = xLabs, xLabels = xLabs, force = TRUE)
 	    p <- p + ggplot2::geom_line(data = data.frame(x = c(min(xticks), max(xticks)), y = c(min(xticks), max(xticks))), mapping = ggplot2::aes(x = x, y = y), col = "darkred", size = 1)
-		p <- JASPgraphs::drawPoints(p, dat = data.frame(xVar, yVar), size = 3)
+		p <- jaspGraphs::drawPoints(p, dat = data.frame(xVar, yVar), size = 3)
 		
 		# JASP theme
-	    p <- JASPgraphs::themeJaspRaw(p)
-		
+	    p <- jaspGraphs::themeJaspRaw(p)
+
 		content <- .writeImage(width = options$plotWidthQQPlot,
 									   height = options$plotHeightQQPlot,
 									   plot = p, obj = TRUE)
